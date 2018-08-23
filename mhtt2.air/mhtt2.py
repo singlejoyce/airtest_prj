@@ -4,6 +4,7 @@ __author__ = "build"
 from airtest.core.api import *
 from airtest.utils.logger import get_logger
 import sys
+import subprocess
 sys.path.insert(0, r"C:\Python27\Lib\site-packages\airtest") 
 sys.meta_path = []
 
@@ -86,8 +87,8 @@ def do_case_lw():
             
             
 try:
-    do_case()
-    # do_case_ddl()
+    # do_case()
+    do_case_ddl()
     # do_case_lw()
 except:
     try:
@@ -96,12 +97,16 @@ except:
             find_util = "findstr "
         else:
             find_util = "grep "
-        str = 'ps|grep ' + appname
-        a.shell(str)
+        cmdstr = 'ps|grep ' + appname
+        a.shell(cmdstr)
     except:
-        with open(logcat_path, 'wb') as f:
-            for x in a.logcat(grep_str=appname):
-                f.write(x)
-
+#         with open(logcat_path, 'wb') as f:
+#             for x in a.logcat():
+#                 f.write(x)
+        handle = subprocess.Popen("adb shell logcat >> %s" % logcat_path, shell=True)
+        if LOGGING is not None:  # may be None atexit
+            LOGGING.error("======joyce=====logcat taskpid = %s" % str(handle.pid))
+        sleep(20)
+        subprocess.Popen("taskkill /pid %s -t -f " % str(handle.pid), shell=True)
 
 

@@ -1,4 +1,5 @@
 #coding
+import os
 
 
 def cube(n):
@@ -6,5 +7,5 @@ def cube(n):
         yield i ** 3
 
 
-for i in cube(5):
-    print i
+# for i in cube(5):
+#     print(i)
