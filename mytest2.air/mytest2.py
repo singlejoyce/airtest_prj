@@ -21,8 +21,8 @@ def out_log_name():
 
 # start your script here
 # deviceid = "6c7768940704"  # hm note 4
-deviceid = "3596c27a0804"  # hm 5 plus
-# deviceid = "28PNW17C29031314"  # huawei 7x
+# deviceid = "3596c27a0804"  # hm 5 plus
+deviceid = "28PNW17C29031314"  # huawei 7x
 connect_device("Android:///" + str(deviceid))
 if LOGGING is not None:  # may be None atexit
     LOGGING.error("======joyce=====test deviceid, deviceid=%s" % deviceid)
@@ -35,7 +35,7 @@ if os.path.exists(logcat_path):
 appname_ddl = "com.ddl.idolgame.ddl"
 appname = "com.thebingo.mhtt"
 appname_lw = "com.ddianle.lovedance.chinanet"
-run_time = 50
+run_time = 40
 
 # do case
 def do_case():
@@ -72,8 +72,8 @@ def do_case_ddl():
         sleep(8)
         touch(Template(r"tpl1533281372348.png", record_pos=(-0.009, 0.205), resolution=(1920, 1080)))
         sleep(10)
-        # assert_exists(Template(r"tpl1533799217514.png", record_pos=(0.286, -0.225), resolution=(2160, 1080)), u"crash")
-        assert_exists(Template(r"tpl1533547812398.png", record_pos=(0.147, -0.101), resolution=(2160, 1080)), u"crash")
+        assert_exists(Template(r"tpl1533799217514.png", record_pos=(0.286, -0.225), resolution=(2160, 1080)), u"crash")
+        # assert_exists(Template(r"tpl1533547812398.png", record_pos=(0.147, -0.101), resolution=(2160, 1080)), u"crash")
         sleep(5)
         if LOGGING is not None:  # may be None atexit
             LOGGING.error("======joyce=====case end, runtimes:%s" % i)
@@ -119,7 +119,6 @@ except:
         #     for x in a.logcat(extra_args="-d"):
         #         f.write(x)
         sleep(5)
-        # logcat -d参数 输出后自动退出 所以不需要额外关闭进程了
         handle = subprocess.Popen("adb -s %s logcat -d >> %s" % (deviceid, logcat_path), shell=True)
         # if LOGGING is not None:  # may be None atexit
         #     LOGGING.error("======joyce=====logcat taskpid = %s" % str(handle.pid))
