@@ -6,7 +6,7 @@ import os
 import sys
 from airtest.utils.logger import get_logger
 
-sys.path.insert(0, r"C:\Python27\Lib\site-packages\airtest")
+sys.path.insert(0, r"C:\Python36\Lib\site-packages\airtest")
 sys.meta_path = []
 LOGGING = get_logger(__name__)
 
